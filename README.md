@@ -1,4 +1,4 @@
-<img src="./icon.png" height="100px"><br />
+<img src="./icon-black.png" height="100px"><br />
 
 # EyeCare App
 
