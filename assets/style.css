@@ -1,0 +1,85 @@
+:root {
+  --main-background-color: #555;
+  --background-gradient-color: #666;
+  --border-color: lightgray;
+
+  --active-status-color: #2fe282;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'SF Pro Display', 'Helvetica', sans-serif;
+  font-weight: 300;
+  text-align: center;
+}
+
+.container {
+  background-color: var(--main-background-color);
+  background: linear-gradient(
+    to bottom,
+    var(--main-background-color) 0%,
+    var(--background-gradient-color) 100%
+  );
+  /* TODO: Change that also and use in before */
+  margin-top: 10px;
+  position: relative;
+  color: white;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  padding: 30px;
+}
+
+.container::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: calc(50% - 5px);
+  width: 10px;
+  height: 10px;
+  transform: rotateZ(45deg);
+  background-color: var(--main-background-color);
+  border-top: 1px solid var(--border-color);
+  border-left: 1px solid var(--border-color);
+}
+
+.eye-care-app {
+  max-width: 250px;
+}
+
+.eye-care-app__image {
+  height: 50px;
+}
+
+.eye-care-app__title {
+  margin-top: -10px;
+}
+
+.eye-care-app__button {
+  padding: 10px 40px;
+  margin: 5px;
+  background: none;
+  color: white;
+  border-radius: 5px;
+  font-size: 15px;
+  outline: none;
+  cursor: pointer;
+}
+
+.eye-care-app__button:hover {
+  background: white;
+  color: var(--main-background-color);
+}
+
+.eye-care-app__status {
+  margin-bottom: 0;
+  font-weight: 500;
+  opacity: 0.3;
+}
+
+.eye-care-app__status.active {
+  opacity: 1;
+  color: #2fe282;
+}
