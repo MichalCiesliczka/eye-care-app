@@ -61,15 +61,17 @@ body {
   padding: 10px 40px;
   margin: 5px;
   background: none;
-  color: white;
+  color: #DDD;
   border-radius: 5px;
+  border-color: #999;
+  border-style: solid;
   font-size: 15px;
   outline: none;
   cursor: pointer;
 }
 
 .eye-care-app__button:hover {
-  background: white;
+  background: #DDD;
   color: var(--main-background-color);
 }
 

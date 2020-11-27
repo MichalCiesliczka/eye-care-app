@@ -3,12 +3,9 @@
   "version": "0.1.0",
   "productName": "EyeCare App",
   "description": "App to care about your eyesight.",
-  "main": "./dist/main.js",
+  "main": "./src/main.js",
   "scripts": {
-    "build": "tsc",
-    "watch": "tsc -w",
-    "lint": "tslint -c tslint.json -p tsconfig.json",
-    "start": "npm run build && electron ./dist/main.js",
+    "start": "electron ./src/main.js",
     "pack": "electron-builder --dir",
     "dist": "electron-builder"
   },
@@ -21,16 +18,17 @@
   "author": "Michal Ciesliczka <michal.ciesliczka@gmail.com> (https://github.com/MichalCiesliczka)",
   "license": "MIT",
   "devDependencies": {
-    "electron": "^4.0.0",
-    "electron-builder": "^20.38.4",
-    "tslint": "^5.12.0",
-    "typescript": "^3.2.2"
+    "electron": "^9.0.0",
+    "electron-builder": "^22.7.0"
   },
   "build": {
     "productName": "EyeCare App",
     "appId": "com.eyecare.app",
+    "mac": {
+      "target": "pkg"
+    },
     "files": [
-      "dist/",
+      "src/",
       "assets/",
       "node_modules/",
       "index.html",

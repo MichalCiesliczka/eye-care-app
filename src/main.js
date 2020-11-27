@@ -1,8 +1,8 @@
-import { app, BrowserWindow, Tray } from 'electron';
-import * as path from 'path';
+const { app, BrowserWindow, Tray } = require('electron');
+const path = require('path');
 
-let mainWindow: BrowserWindow;
-let tray: Tray = null;
+let mainWindow;
+let tray = null;
 
 const createTray = () => {
   tray = new Tray(path.join(__dirname, '../assets/eye.png'));
@@ -11,7 +11,7 @@ const createTray = () => {
   tray.on('click', toggleWindow);
 };
 
-export const toggleWindow = () => {
+const toggleWindow = () => {
   mainWindow.isVisible() ? mainWindow.hide() : showWindow();
 };
 
@@ -38,7 +38,7 @@ function createWindow() {
     frame: false,
     fullscreenable: false,
     height: 500,
-    icon: path.join(__dirname, '../assets/eye.svg'),
+    icon: path.join(__dirname, '../assets/eye.png'),
     resizable: false,
     show: false,
     transparent: true,
@@ -60,19 +60,19 @@ function createWindow() {
   return mainWindow;
 }
 
-app.on('ready', () => {
+app.whenReady().then(() => {
   createTray();
   createWindow();
+
+  app.on('activate', () => {
+    if (mainWindow === null) {
+      createWindow();
+    }
+  });
 });
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     app.quit();
-  }
-});
-
-app.on('activate', () => {
-  if (mainWindow === null) {
-    createWindow();
   }
 });

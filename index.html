@@ -23,18 +23,16 @@
           Once you click start button you'll be notified every 20 minutes to
           look away for 20s.
         </p>
-        <button class="eye-care-app__button" data-js="timerStart">
-          Start a timer!</button
+        <button class="eye-care-app__button" data-js="timerToggle">
+          Start timer!</button
         ><br />
-        <button class="eye-care-app__button" data-js="timerStop">
-          Stop a timer!
-        </button>
         <p class="eye-care-app__status" data-js="statusIndicator">Not active</p>
       </div>
     </div>
   </body>
 
+  <script src="./src/renderer.js"></script>
   <script>
-    require('./dist/renderer.js');
+
   </script>
 </html>

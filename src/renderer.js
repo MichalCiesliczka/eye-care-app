@@ -1,34 +1,34 @@
-import { TIME_PERIODS } from './constans';
+const TIME_PERIODS = {
+  lookAway: 20 * 60 * 1000,
+  workAgain: (20 + 2) * 1000, // NOTE: Additional 2 secs to make you notice this notification and look away
+};
 
-let interval: number;
-let workAgainTimeout: NodeJS.Timer;
-let lookAwayNotification: Notification;
-let workNotification: Notification;
+let interval;
+let workAgainTimeout;
+let lookAwayNotification;
+let workNotification;
 
 const $statusIndicatorElement = document.querySelector(
   '[data-js="statusIndicator"]',
 );
+const $toggleButton = document.querySelector('[data-js="timerToggle"]');
 
-document
-  .querySelector('[data-js="timerStart"]')
-  .addEventListener('click', () => {
+$toggleButton.addEventListener('click', () => {
+  $statusIndicatorElement.classList.toggle('active');
+  if (interval) {
+    clearInterval(interval);
+    interval = null;
+    clearTimeout(workAgainTimeout);
+
+    $toggleButton.innerHTML = 'Start timer'
+    $statusIndicatorElement.innerHTML = 'Not active';
+  } else {
     makeInterval();
 
-    $statusIndicatorElement.classList.add('active');
+    $toggleButton.innerHTML = 'Stop timer'
     $statusIndicatorElement.innerHTML = 'Active';
-  });
-document
-  .querySelector('[data-js="timerStop"]')
-  .addEventListener('click', () => {
-    if (interval) {
-      clearInterval(interval);
-      interval = null;
-      clearTimeout(workAgainTimeout);
-
-      $statusIndicatorElement.classList.remove('active');
-      $statusIndicatorElement.innerHTML = 'Not active';
-    }
-  });
+  }
+});
 
 const showEyeCareNotification = () => {
   lookAwayNotification = new Notification('Time to rest!', {
